@@ -58,11 +58,13 @@
 <h2 class="pkg-version" data-toc-text="0.3.0" id="desctable-030">desctable 0.3.0<a class="anchor" aria-label="anchor" href="#desctable-030"></a></h2>
 <div class="section level5">
 <h5 id="new-features-0-3-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-3-0"></a></h5>
-<ul><li>NEW API: desctable is now desc_table, desc_tests, and
-desc_output</li>
+<ul><li>NEW API: desctable is now <code>desc_table</code>,
+<code>desc_tests</code>, and <code>desc_output</code>
+</li>
 <li>New internal format: desctable uses dataframes with list-columns
 internally instead of nested lists</li>
-<li>new pkgdown site</li>
+<li>New website with <em>pkgdown</em>
+</li>
 </ul></div>
 <div class="section level5">
 <h5 id="bugfix-0-3-0">Bugfix<a class="anchor" aria-label="anchor" href="#bugfix-0-3-0"></a></h5>
@@ -74,10 +76,10 @@ soft-deprecated.</li>
 <h2 class="pkg-version" data-toc-text="0.2.0" id="desctable-020">desctable 0.2.0<a class="anchor" aria-label="anchor" href="#desctable-020"></a></h2>
 <div class="section level5">
 <h5 id="new-features-0-2-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-2-0"></a></h5>
-<ul><li>Add support for purrr::map-like formulas for statistical and test
-functions</li>
-<li>“conditional” formulas will be deprecated in 1.0. For example,
-replace <code>is.normal ~ mean | median</code> with
+<ul><li>Add support for <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">purrr::map</a></code>-like formulas for
+statistical and test functions</li>
+<li>Conditional formulas will be deprecated in 1.0. For example, replace
+<code>is.normal ~ mean | median</code> with
 <code>~ if (is.normal(.)) mean(.) else median(.)</code>
 </li>
 </ul></div>
@@ -94,8 +96,8 @@ replace <code>is.normal ~ mean | median</code> with
 <h2 class="pkg-version" data-toc-text="0.1.8" id="desctable-018">desctable 0.1.8<a class="anchor" aria-label="anchor" href="#desctable-018"></a></h2>
 <div class="section level5">
 <h5 id="code-cleanup-0-1-8">Code cleanup<a class="anchor" aria-label="anchor" href="#code-cleanup-0-1-8"></a></h5>
-<ul><li>use RStudio style guidelines for all code and docs</li>
-<li>use fewer tidyverse functions internally, drop <code>purrr</code>
+<ul><li>Use RStudio style guidelines for all code and docs</li>
+<li>Use fewer tidyverse functions internally, drop <code>purrr</code>
 dependancy</li>
 </ul></div>
 </div>
