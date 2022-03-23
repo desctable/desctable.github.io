@@ -72,8 +72,16 @@
 
 
 
-
-<div class="row">
+<script src="tips_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="tips_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="tips_files/datatables-binding-0.21/datatables.js"></script><link href="tips_files/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="tips_files/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="tips_files/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="tips_files/dt-ext-fixedheader-1.11.3/css/fixedHeader.dataTables.min.css" rel="stylesheet">
+<script src="tips_files/dt-ext-fixedheader-1.11.3/js/dataTables.fixedHeader.min.js"></script><link href="tips_files/dt-ext-fixedcolumns-1.11.3/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="tips_files/dt-ext-fixedcolumns-1.11.3/js/dataTables.fixedColumns.min.js"></script><script src="tips_files/jszip-1.11.3/jszip.min.js"></script><link href="tips_files/dt-ext-buttons-1.11.3/css/buttons.dataTables.min.css" rel="stylesheet">
+<script src="tips_files/dt-ext-buttons-1.11.3/js/dataTables.buttons.min.js"></script><script src="tips_files/dt-ext-buttons-1.11.3/js/buttons.html5.min.js"></script><script src="tips_files/dt-ext-buttons-1.11.3/js/buttons.colVis.min.js"></script><script src="tips_files/dt-ext-buttons-1.11.3/js/buttons.print.min.js"></script><link href="tips_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="tips_files/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="tips_files/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+<script src="tips_files/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="tips_files/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+<script src="tips_files/selectize-0.12.0/selectize.min.js"></script><div class="row">
   <main id="main"><div class="page-header">
       <img src="" class="logo" alt=""><h1>desctable tips</h1>
             
@@ -86,31 +94,225 @@
     
 <p>Here is collection of tips and tricks to go further with
 <em>desctable</em></p>
+<div class="section level2">
+<h2 id="section"></h2>
 <div class="section level3">
-<h3 id="label-variables">Label variables<a class="anchor" aria-label="anchor" href="#label-variables"></a>
-</h3>
+<h3 id="section-1"></h3>
+<div class="section level4">
+<h4 id="label-variables">Label variables<a class="anchor" aria-label="anchor" href="#label-variables"></a>
+</h4>
+<p>You can define labels for variables using the <code>.labels</code>
+argument in <code>desc_table</code></p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>mpg   <span class="op">=</span> <span class="st">"Miles/(US) gallon"</span>,
+            cyl   <span class="op">=</span> <span class="st">"Number of cylinders"</span>,
+            disp  <span class="op">=</span> <span class="st">"Displacement (cu.in.)"</span>,
+            hp    <span class="op">=</span> <span class="st">"Gross horsepower"</span>,
+            drat  <span class="op">=</span> <span class="st">"Rear axle ratio"</span>,
+            wt    <span class="op">=</span> <span class="st">"Weight (1000 lbs)"</span>,
+            qsec  <span class="op">=</span> <span class="st">"1/4 mile time"</span>,
+            vs    <span class="op">=</span> <span class="st">"Engine"</span>,
+            am    <span class="op">=</span> <span class="st">"Transmission"</span>,
+            gear  <span class="op">=</span> <span class="st">"Number of forward gears"</span>,
+            CARBURATOR <span class="op">=</span> <span class="st">"Number of carburetors"</span><span class="op">)</span>
+
+<span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_table.html">desc_table</a></span><span class="op">(</span>.labels <span class="op">=</span> <span class="va">labels</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_output.html">desc_output</a></span><span class="op">(</span><span class="st">"DT"</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-a81c64ca44bed65d5199" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a81c64ca44bed65d5199">{"x":{"filter":"none","vertical":false,"extensions":["FixedHeader","FixedColumns","Buttons"],"data":[["Miles/(US) gallon","Number of cylinders","Displacement (cu.in.)","Gross horsepower","Rear axle ratio","Weight (1000 lbs)","1/4 mile time","Engine","Transmission","Number of forward gears","carb"],[10.4,4,71.1,52,2.76,1.513,14.5,0,0,3,1],[15.425,4,120.825,96.5,3.08,2.58125,16.8925,0,0,3,2],[19.2,6,196.3,123,3.695,3.325,17.71,0,0,4,2],[20.090625,6.1875,230.721875,146.6875,3.5965625,3.21725,17.84875,0.4375,0.40625,3.6875,2.8125],[22.8,8,326,180,3.92,3.61,18.9,1,1,4,4],[33.9,8,472,335,4.93,5.424,22.9,1,1,5,8],[6.0269480520891,1.78592164694654,123.938693831382,68.5628684893206,0.534678736070971,0.978457442989697,1.78694323609684,0.504016128774185,0.498990917235846,0.737804065256947,1.61519997763185],[7.375,4,205.175,83.5,0.84,1.02875,2.0075,1,1,1,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Min<\/th>\n      <th>Q1<\/th>\n      <th>Med<\/th>\n      <th>Mean<\/th>\n      <th>Q3<\/th>\n      <th>Max<\/th>\n      <th>sd<\/th>\n      <th>IQR<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"paging":false,"info":false,"search":[],"dom":"Brtip","fixedColumns":true,"fixedHeader":true,"buttons":["copy","excel"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render"],"jsHooks":[]}</script><p>As you can see with <code>CARBURATOR</code> instead of
+<code>carb</code>, not all variables need to have a label, and unused
+labels are discarded.</p>
 </div>
-<div class="section level3">
-<h3 id="default-statistics">Default statistics<a class="anchor" aria-label="anchor" href="#default-statistics"></a>
-</h3>
+<div class="section level4">
+<h4 id="default-statistics">Default statistics<a class="anchor" aria-label="anchor" href="#default-statistics"></a>
+</h4>
+<p><code>desc_table</code> chooses its own statistics this way:</p>
+<ul>
+<li>always show <code>N = length</code>
+</li>
+<li>show <code>"%" = percent</code> if there is at least a factor</li>
+<li>show <code>min</code>, <code>max</code>, <code>Q1</code>,
+<code>Q3</code>, <code>median</code>, <code>mean</code>,
+<code>sd</code>, <code>IQR</code> if there is at least a numeric</li>
+</ul>
 </div>
-<div class="section level3">
-<h3 id="defining-your-own-default-statistics">Defining your own default statistics<a class="anchor" aria-label="anchor" href="#defining-your-own-default-statistics"></a>
-</h3>
+<div class="section level4">
+<h4 id="defining-your-own-default-statistics">Defining your own default statistics<a class="anchor" aria-label="anchor" href="#defining-your-own-default-statistics"></a>
+</h4>
+<p>You can define your own automatic statistic function using the
+<code>.auto</code> argument in <code>desc_table</code>.<br>
+This function should accept one argument, the table to choose statistics
+for (in the case of a grouped dataframe the subtables will be passed to
+the function). It should return a list of statistics.<br>
+Here is the code of <code>stats_auto</code>, the default value of
+<code>.auto</code></p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">stats_auto</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="va">any</span> <span class="op">-&gt;</span> <span class="va">numeric</span>
+
+  <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">is.factor</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">fact</span>
+
+  <span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"Min"</span>  <span class="op">=</span> <span class="va">min</span>,
+                <span class="st">"Q1"</span>   <span class="op">=</span> <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.</span>, <span class="fl">.25</span><span class="op">)</span>,
+                <span class="st">"Med"</span>  <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span>,
+                <span class="st">"Mean"</span> <span class="op">=</span> <span class="va">mean</span>,
+                <span class="st">"Q3"</span>   <span class="op">=</span> <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.</span>, <span class="fl">.75</span><span class="op">)</span>,
+                <span class="st">"Max"</span>  <span class="op">=</span> <span class="va">max</span>,
+                <span class="st">"sd"</span>   <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span>,
+                <span class="st">"IQR"</span>  <span class="op">=</span> <span class="va">IQR</span><span class="op">)</span>
+
+  <span class="kw">if</span> <span class="op">(</span><span class="va">fact</span> <span class="op">&amp;</span> <span class="va">numeric</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"N"</span> <span class="op">=</span> <span class="va">length</span>,
+           <span class="st">"%"</span> <span class="op">=</span> <span class="va">percent</span><span class="op">)</span>,
+      <span class="va">stats</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">fact</span> <span class="op">&amp;</span> <span class="op">!</span><span class="va">numeric</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"N"</span> <span class="op">=</span> <span class="va">length</span>,
+         <span class="st">"%"</span> <span class="op">=</span> <span class="va">percent</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="va">fact</span> <span class="op">&amp;</span> <span class="va">numeric</span><span class="op">)</span>
+    <span class="va">stats</span>
+<span class="op">}</span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="reuse-a-list-of-defined-statistics">Reuse a list of defined statistics<a class="anchor" aria-label="anchor" href="#reuse-a-list-of-defined-statistics"></a>
-</h3>
+<div class="section level4">
+<h4 id="reuse-a-list-of-defined-statistics">Reuse a list of defined statistics<a class="anchor" aria-label="anchor" href="#reuse-a-list-of-defined-statistics"></a>
+</h4>
+<p>If you often reuse the same statistics for multiple tables and you
+don’t want to repeat yourself, you can splice a list to
+<code>desc_table</code> using the <code>rlang::!!!</code> operator</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">stats</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>N <span class="op">=</span> <span class="va">length</span>,
+             Mean <span class="op">=</span> <span class="va">mean</span>,
+             SD <span class="op">=</span> <span class="va">sd</span><span class="op">)</span>
+
+<span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_table.html">desc_table</a></span><span class="op">(</span><span class="op">!</span><span class="op">!</span><span class="op">!</span><span class="va">stats</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_output.html">desc_output</a></span><span class="op">(</span><span class="st">"DT"</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-6bcdfe169b0688e24a0e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6bcdfe169b0688e24a0e">{"x":{"filter":"none","vertical":false,"extensions":["FixedHeader","FixedColumns","Buttons"],"data":[["mpg","cyl","disp","hp","drat","wt","qsec","vs","am","gear","carb"],[32,32,32,32,32,32,32,32,32,32,32],[20.090625,6.1875,230.721875,146.6875,3.5965625,3.21725,17.84875,0.4375,0.40625,3.6875,2.8125],[6.0269480520891,1.78592164694654,123.938693831382,68.5628684893206,0.534678736070971,0.978457442989697,1.78694323609684,0.504016128774185,0.498990917235846,0.737804065256947,1.61519997763185]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>N<\/th>\n      <th>Mean<\/th>\n      <th>SD<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"paging":false,"info":false,"search":[],"dom":"Brtip","fixedColumns":true,"fixedHeader":true,"buttons":["copy","excel"],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script><p>When splicing, all stats need to be explicitly named</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">stats2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>N <span class="op">=</span> <span class="va">length</span>,
+              <span class="va">mean</span>,
+              <span class="va">sd</span><span class="op">)</span>
+
+<span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_table.html">desc_table</a></span><span class="op">(</span><span class="op">!</span><span class="op">!</span><span class="op">!</span><span class="va">stats2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_output.html">desc_output</a></span><span class="op">(</span><span class="st">"DT"</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-2e7a82390990f3a11ca1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2e7a82390990f3a11ca1">{"x":{"filter":"none","vertical":false,"extensions":["FixedHeader","FixedColumns","Buttons"],"data":[["mpg","cyl","disp","hp","drat","wt","qsec","vs","am","gear","carb"],[32,32,32,32,32,32,32,32,32,32,32],[20.090625,6.1875,230.721875,146.6875,3.5965625,3.21725,17.84875,0.4375,0.40625,3.6875,2.8125],[6.0269480520891,1.78592164694654,123.938693831382,68.5628684893206,0.534678736070971,0.978457442989697,1.78694323609684,0.504016128774185,0.498990917235846,0.737804065256947,1.61519997763185]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>N<\/th>\n      <th><fn><\/th>\n      <th><fn><\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"paging":false,"info":false,"search":[],"dom":"Brtip","fixedColumns":true,"fixedHeader":true,"buttons":["copy","excel"],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script><p>You can also define a “dumb” automatic function</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">default_stats</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
+<span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>N <span class="op">=</span> <span class="va">length</span>,
+       <span class="va">mean</span>,
+       <span class="va">sd</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="default-statistical-tests">Default statistical tests<a class="anchor" aria-label="anchor" href="#default-statistical-tests"></a>
-</h3>
+<div class="section level4">
+<h4 id="default-statistical-tests">Default statistical tests<a class="anchor" aria-label="anchor" href="#default-statistical-tests"></a>
+</h4>
+<p><code>desc_table</code> chooses its own statistical tests this
+way:</p>
+<ul>
+<li>if the variable is a factor, use <code>fisher.test</code>
+<ul>
+<li>if <code>fisher.test</code> fails, fallback on
+<code>chisq.test</code>
+</li>
+</ul>
+</li>
+<li>if the variable is numeric, use
+<ul>
+<li>
+<code>wilcoxon.test</code> if there are two groups</li>
+<li>
+<code>kruskal.test</code> if there are more than two groups</li>
+</ul>
+</li>
+</ul>
 </div>
-<div class="section level3">
-<h3 id="output-options">Output options<a class="anchor" aria-label="anchor" href="#output-options"></a>
-</h3>
+<div class="section level4">
+<h4 id="defining-your-own-default-statistical-tests">Defining your own default statistical tests<a class="anchor" aria-label="anchor" href="#defining-your-own-default-statistical-tests"></a>
+</h4>
+<p>You can define your own automatic statistic function using the
+<code>.auto</code> argument in <code>desc_tests</code>.<br>
+This function should accept two arguments, the variable to compare and
+the grouping variable, and return a statistical test that accepts a
+<code>formula</code> argument and returns an object with a
+<code>p.value</code> element.<br>
+Here is the code of <code>tests_auto</code>, the default value of
+<code>.auto</code></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tests_auto</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">var</span>, <span class="va">grp</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">grp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">grp</span><span class="op">)</span>
+
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nlevels.html" class="external-link">nlevels</a></span><span class="op">(</span><span class="va">grp</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">2</span><span class="op">)</span>
+    <span class="op">~</span><span class="va">no.test</span>
+  <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">is.factor</a></span><span class="op">(</span><span class="va">var</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">is.numeric</a></span><span class="op">(</span><span class="fu"><a href="../reference/fisher.test.html">fisher.test</a></span><span class="op">(</span><span class="va">var</span> <span class="op">~</span> <span class="va">grp</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>, error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="cn">F</span><span class="op">)</span><span class="op">)</span>
+      <span class="op">~</span><span class="va">fisher.test</span>
+    <span class="kw">else</span>
+      <span class="op">~</span><span class="va">chisq.test</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nlevels.html" class="external-link">nlevels</a></span><span class="op">(</span><span class="va">grp</span><span class="op">)</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span>
+    <span class="op">~</span><span class="va">wilcox.test</span>
+  <span class="kw">else</span>
+    <span class="op">~</span><span class="va">kruskal.test</span>
+<span class="op">}</span></code></pre></div>
+<p>You can also provide a default statistical test using the
+<code>.default</code> argument</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_table.html">desc_table</a></span><span class="op">(</span><span class="va">mean</span>, <span class="va">sd</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_tests.html">desc_tests</a></span><span class="op">(</span>.default <span class="op">=</span> <span class="op">~</span><span class="va">t.test</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_output.html">desc_output</a></span><span class="op">(</span><span class="st">"DT"</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-1c8b24d696153df52eea" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1c8b24d696153df52eea">{"x":{"filter":"none","vertical":false,"class":"display","extensions":["FixedHeader","FixedColumns","Buttons"],"data":[["mpg","cyl","disp","hp","drat","wt","qsec","vs","gear","carb"],[24.3923076923077,5.07692307692308,143.530769230769,126.846153846154,4.05,2.411,17.36,0.538461538461538,4.38461538461539,2.92307692307692],[6.16650380935334,1.55250005161237,87.2039886761245,84.0623242539389,0.364051278439361,0.616981631277085,1.79235878104804,0.518874521662771,0.506369683541833,2.17797836159815],[17.1473684210526,6.94736842105263,290.378947368421,160.263157894737,3.28631578947368,3.76889473684211,18.1831578947368,0.368421052631579,3.21052631578947,2.73684210526316],[3.83396638556131,1.54465689144247,110.171646780766,53.9081957335938,0.392303886268396,0.777400146838225,1.7513076150617,0.495594627783352,0.418853908291695,1.14707866935281],["≤ 0.01","≤ 0.01","≤ 0.01","0.22","≤ 0.01","≤ 0.01","0.21","0.36","≤ 0.01","0.78"],["t.test","t.test","t.test","t.test","t.test","t.test","t.test","t.test","t.test","t.test"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th rowspan=\"2\"><\/th>\n      <th colspan=\"2\">am = 1 (N = 13)<\/th>\n      <th colspan=\"2\">am = 0 (N = 19)<\/th>\n    <\/tr>\n    <tr>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p<\/th>\n      <th>test<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"paging":false,"info":false,"search":[],"dom":"Brtip","fixedColumns":true,"fixedHeader":true,"buttons":["copy","excel"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script><p>Note that as with named tests, it is necessary to prepend the test
+name with a tilde (<code>~</code>).</p>
+<p>You can still choose individual tests when you define either a
+<code>.auto</code> or a <code>.default</code> test</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_table.html">desc_table</a></span><span class="op">(</span><span class="va">mean</span>, <span class="va">sd</span>, <span class="va">median</span>, <span class="va">IQR</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_tests.html">desc_tests</a></span><span class="op">(</span>.default <span class="op">=</span> <span class="op">~</span><span class="va">t.test</span>, carb <span class="op">=</span> <span class="op">~</span><span class="va">wilcox.test</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_output.html">desc_output</a></span><span class="op">(</span><span class="st">"DT"</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-6d9a96e30f85195f4420" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6d9a96e30f85195f4420">{"x":{"filter":"none","vertical":false,"class":"display","extensions":["FixedHeader","FixedColumns","Buttons"],"data":[["mpg","cyl","disp","hp","drat","wt","qsec","vs","gear","carb"],[24.3923076923077,5.07692307692308,143.530769230769,126.846153846154,4.05,2.411,17.36,0.538461538461538,4.38461538461539,2.92307692307692],[6.16650380935334,1.55250005161237,87.2039886761245,84.0623242539389,0.364051278439361,0.616981631277085,1.79235878104804,0.518874521662771,0.506369683541833,2.17797836159815],[22.8,4,120.3,109,4.08,2.32,17.02,1,4,2],[9.4,2,81,47,0.37,0.845,2.15,1,1,3],[17.1473684210526,6.94736842105263,290.378947368421,160.263157894737,3.28631578947368,3.76889473684211,18.1831578947368,0.368421052631579,3.21052631578947,2.73684210526316],[3.83396638556131,1.54465689144247,110.171646780766,53.9081957335938,0.392303886268396,0.777400146838225,1.7513076150617,0.495594627783352,0.418853908291695,1.14707866935281],[17.3,8,275.8,175,3.15,3.52,17.82,0,3,3],[4.25,2,163.7,76,0.625,0.405,1.995,1,0,2],["≤ 0.01","≤ 0.01","≤ 0.01","0.22","≤ 0.01","≤ 0.01","0.21","0.36","≤ 0.01","0.74"],["t.test","t.test","t.test","t.test","t.test","t.test","t.test","t.test","t.test","wilcox.test"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th rowspan=\"2\"><\/th>\n      <th colspan=\"4\">am = 1 (N = 13)<\/th>\n      <th colspan=\"4\">am = 0 (N = 19)<\/th>\n    <\/tr>\n    <tr>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>median<\/th>\n      <th>IQR<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>median<\/th>\n      <th>IQR<\/th>\n      <th>p<\/th>\n      <th>test<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"paging":false,"info":false,"search":[],"dom":"Brtip","fixedColumns":true,"fixedHeader":true,"buttons":["copy","excel"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render"],"jsHooks":[]}</script><p>Note that if a <code>.default</code> test is provided,
+<code>.auto</code> is ignored.</p>
 </div>
-  </main>
+<div class="section level4">
+<h4 id="output-options">Output options<a class="anchor" aria-label="anchor" href="#output-options"></a>
+</h4>
+<p>You can set the number of significant digits to display with the
+<code>digits</code> argument. The p values are truncated at
+1E-digits.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_table.html">desc_table</a></span><span class="op">(</span><span class="va">mean</span>, <span class="va">sd</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_tests.html">desc_tests</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_output.html">desc_output</a></span><span class="op">(</span><span class="st">"DT"</span>, digits <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-ae86783335669a370cb2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ae86783335669a370cb2">{"x":{"filter":"none","vertical":false,"class":"display","extensions":["FixedHeader","FixedColumns","Buttons"],"data":[["Sepal.Length","Sepal.Width","Petal.Length","Petal.Width"],[5.006,3.428,1.462,0.246],[0.352489687213451,0.379064369096289,0.173663996480184,0.105385589380046],[5.936,2.77,4.26,1.326],[0.516171147063863,0.313798323378411,0.469910977239958,0.197752680004544],[6.588,2.974,5.552,2.026],[0.635879593274432,0.322496638172637,0.551894695663983,0.274650055636667],["1e-10","1e-10","1e-10","1e-10"],["kruskal.test","kruskal.test","kruskal.test","kruskal.test"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th rowspan=\"2\"><\/th>\n      <th colspan=\"2\">Species = setosa (N = 50)<\/th>\n      <th colspan=\"2\">Species = versicolor (N = 50)<\/th>\n      <th colspan=\"2\">Species = virginica (N = 50)<\/th>\n    <\/tr>\n    <tr>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p<\/th>\n      <th>test<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"paging":false,"info":false,"search":[],"dom":"Brtip","fixedColumns":true,"fixedHeader":true,"buttons":["copy","excel"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 10, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 10, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 10, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 10, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 10, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 10, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[1,2,3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render"],"jsHooks":[]}</script><p>Any additional argument given to <code>desc_output</code> will be
+carried to the output function</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_table.html">desc_table</a></span><span class="op">(</span><span class="va">mean</span>, <span class="va">sd</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/desc_output.html">desc_output</a></span><span class="op">(</span><span class="st">"DT"</span>, filter <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-36788aff08cb87d87d4f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-36788aff08cb87d87d4f">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.246\" data-max=\"5.006\" data-scale=\"3\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.105385589380045\" data-max=\"0.379064369096289\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1.326\" data-max=\"5.936\" data-scale=\"3\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.197752680004544\" data-max=\"0.516171147063864\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"2.025\" data-max=\"6.588\" data-scale=\"3\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.274650055636667\" data-max=\"0.635879593274433\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","class":"display","extensions":["FixedHeader","FixedColumns","Buttons"],"data":[["Sepal.Length","Sepal.Width","Petal.Length","Petal.Width"],[5.006,3.428,1.462,0.246],[0.352489687213451,0.379064369096289,0.173663996480184,0.105385589380046],[5.936,2.77,4.26,1.326],[0.516171147063863,0.313798323378411,0.469910977239958,0.197752680004544],[6.588,2.974,5.552,2.026],[0.635879593274432,0.322496638172637,0.551894695663983,0.274650055636667]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th rowspan=\"2\"><\/th>\n      <th colspan=\"2\">Species = setosa (N = 50)<\/th>\n      <th colspan=\"2\">Species = versicolor (N = 50)<\/th>\n      <th colspan=\"2\">Species = virginica (N = 50)<\/th>\n    <\/tr>\n    <tr>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"paging":false,"info":false,"search":[],"dom":"Brtip","fixedColumns":true,"fixedHeader":true,"buttons":["copy","excel"],"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[1,2,3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render"],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
