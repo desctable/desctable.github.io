@@ -51,6 +51,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="articles/desctable_deprecated.html">desctable usage vignette (deprecated)</a>
+    <a class="dropdown-item" href="articles/tips.html">desctable tips</a>
   </div>
 </li>
 <li class="nav-item">
@@ -79,11 +80,12 @@
 <div class="page-header"><h1 id="desctable">Desctable<a class="anchor" aria-label="anchor" href="#desctable"></a>
 </h1></div>
 
-<p><strong>Warning:</strong> <em>Existing users: from version 0.3 on,
-the previous API is becoming deprecated and a new API with new internal
-format is developped.<br>
-See <code><a href="reference/desc_table.html">?desc_table</a></code> and the new version of the
-vignette</em></p>
+<p><strong>Warning to existing users</strong><br><em>This version introduces a new API that should make the creation of
+tables more flexible.<br>
+The old API is still present but in a deprecated mode.<br>
+See the roadmap below, and the website for the new usage.<br>
+Suggestions about this change are welcome !</em></p>
+<hr>
 </div>
 <div class="section level1">
 <h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
@@ -100,14 +102,11 @@ statistical tables in R.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"maximewack/desctable"</span>)</span></code></pre></div>
 </div>
 <div class="section level1">
-<h1 id="loading">Loading<a class="anchor" aria-label="anchor" href="#loading"></a>
+<h1 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
 </h1>
+<p>Load the package</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maximewack/desctable" class="external-link">desctable</a></span><span class="op">)</span></code></pre></div>
-</div>
-<div class="section level1">
-<h1 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
-</h1>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://desctable.github.io" class="external-link">desctable</a></span><span class="op">)</span></code></pre></div>
 <p>Simply apply <code>desc_table</code> on a dataframe or a grouped
 dataframe to get a statistical table</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -140,184 +139,241 @@ your choice</p>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 7 **Species**: *versicolor*  50 33.33333       NA        NA</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 8  **Species**: *virginica*  50 33.33333       NA        NA</span></span></code></pre></div>
 <p>Create comparative tables, compute statistical tests and output to
-pander for crisp markdown rendering</p>
+<code>pander</code> for crisp markdown rendering!</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Petal.Length</span> <span class="op">&gt;</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/desc_table.html">desc_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/desc_tests.html">desc_tests</a></span><span class="op">(</span>Sepal.Width <span class="op">=</span> <span class="op">~</span> <span class="va">t.test</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>,
+                vs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">vs</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"V-shaped"</span>, <span class="st">"straight"</span><span class="op">)</span><span class="op">)</span>,
+                am <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">am</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"automatic"</span>, <span class="st">"manual"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/desc_table.html">desc_table</a></span><span class="op">(</span>N <span class="op">=</span> <span class="va">length</span>,
+             <span class="st">"%"</span> <span class="op">=</span> <span class="va">percent</span>,
+             <span class="st">"Median"</span> <span class="op">=</span> <span class="va">median</span>,
+             <span class="va">IQR</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/desc_tests.html">desc_tests</a></span><span class="op">(</span>vs <span class="op">=</span> <span class="op">~</span><span class="va">chisq.test</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/desc_output.html">desc_output</a></span><span class="op">(</span><span class="st">"pander"</span><span class="op">)</span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="8%">
-<col width="26%">
-<col width="2%">
+<col width="9%">
+<col width="23%">
 <col width="3%">
-<col width="3%">
-<col width="2%">
-<col width="2%">
-<col width="25%">
-<col width="2%">
-<col width="3%">
-<col width="3%">
-<col width="2%">
-<col width="3%">
+<col width="5%">
 <col width="4%">
-<col width="6%">
+<col width="25%">
+<col width="3%">
+<col width="5%">
+<col width="4%">
+<col width="5%">
+<col width="9%">
 </colgroup>
 <thead><tr class="header">
 <th align="left"> </th>
-<th align="left">Petal.Length &gt; 5 = FALSE (N = 108) N</th>
+<th align="left">am = manual (N = 13) N</th>
 <th align="left">%</th>
-<th align="left">Mean</th>
-<th align="left">sd</th>
-<th align="left">Med</th>
+<th align="left">Median</th>
 <th align="left">IQR</th>
-<th align="left">Petal.Length &gt; 5 = TRUE (N = 42) N</th>
+<th align="left">am = automatic (N = 19) N</th>
 <th align="left">%</th>
-<th align="left">Mean</th>
-<th align="left">sd</th>
-<th align="left">Med</th>
+<th align="left">Median</th>
 <th align="left">IQR</th>
 <th align="left">p</th>
 <th align="left">test</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Sepal.Length</td>
-<td align="left">108</td>
+<td align="left">mpg</td>
+<td align="left">13</td>
 <td align="left"></td>
+<td align="left">23</td>
+<td align="left">9.4</td>
+<td align="left">19</td>
 <td align="left"></td>
-<td align="left"></td>
-<td align="left">5.5</td>
-<td align="left">1</td>
-<td align="left">42</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">6.7</td>
-<td align="left">0.85</td>
+<td align="left">17</td>
+<td align="left">4.2</td>
 <td align="left">≤ 0.01</td>
 <td align="left">wilcox.test</td>
 </tr>
 <tr class="even">
-<td align="left">Sepal.Width</td>
-<td align="left">108</td>
-<td align="left"></td>
-<td align="left">3.1</td>
-<td align="left">0.48</td>
-<td align="left">3</td>
-<td align="left">0.6</td>
-<td align="left">42</td>
+<td align="left"><strong>cyl</strong></td>
+<td align="left">13</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">3</td>
-<td align="left">0.4</td>
-<td align="left">0.61</td>
-<td align="left">t.test</td>
-</tr>
-<tr class="odd">
-<td align="left">Petal.Length</td>
-<td align="left">108</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">3.5</td>
-<td align="left">3</td>
-<td align="left">42</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">5.6</td>
-<td align="left">0.67</td>
-<td align="left">≤ 0.01</td>
-<td align="left">wilcox.test</td>
-</tr>
-<tr class="even">
-<td align="left">Petal.Width</td>
-<td align="left">108</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">1</td>
-<td align="left">1.2</td>
-<td align="left">42</td>
-<td align="left"></td>
-<td align="left">2.1</td>
-<td align="left">0.28</td>
-<td align="left">2.1</td>
-<td align="left">0.47</td>
-<td align="left">≤ 0.01</td>
-<td align="left">wilcox.test</td>
-</tr>
-<tr class="odd">
-<td align="left"><strong>Species</strong></td>
-<td align="left">108</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">42</td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">19</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">≤ 0.01</td>
 <td align="left">fisher.test</td>
 </tr>
+<tr class="odd">
+<td align="left">    4</td>
+<td align="left">8</td>
+<td align="left">62</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">3</td>
+<td align="left">16</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
 <tr class="even">
-<td align="left">    setosa</td>
-<td align="left">50</td>
-<td align="left">46</td>
+<td align="left">    6</td>
+<td align="left">3</td>
+<td align="left">23</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">4</td>
+<td align="left">21</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">    versicolor</td>
-<td align="left">49</td>
-<td align="left">45</td>
+<td align="left">    8</td>
+<td align="left">2</td>
+<td align="left">15</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">1</td>
-<td align="left">2.4</td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">12</td>
+<td align="left">63</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">    virginica</td>
-<td align="left">9</td>
-<td align="left">8.3</td>
+<td align="left">disp</td>
+<td align="left">13</td>
+<td align="left"></td>
+<td align="left">120</td>
+<td align="left">81</td>
+<td align="left">19</td>
+<td align="left"></td>
+<td align="left">276</td>
+<td align="left">164</td>
+<td align="left">≤ 0.01</td>
+<td align="left">wilcox.test</td>
+</tr>
+<tr class="odd">
+<td align="left">hp</td>
+<td align="left">13</td>
+<td align="left"></td>
+<td align="left">109</td>
+<td align="left">47</td>
+<td align="left">19</td>
+<td align="left"></td>
+<td align="left">175</td>
+<td align="left">76</td>
+<td align="left">0.046</td>
+<td align="left">wilcox.test</td>
+</tr>
+<tr class="even">
+<td align="left">drat</td>
+<td align="left">13</td>
+<td align="left"></td>
+<td align="left">4.1</td>
+<td align="left">0.37</td>
+<td align="left">19</td>
+<td align="left"></td>
+<td align="left">3.1</td>
+<td align="left">0.63</td>
+<td align="left">≤ 0.01</td>
+<td align="left">wilcox.test</td>
+</tr>
+<tr class="odd">
+<td align="left">wt</td>
+<td align="left">13</td>
+<td align="left"></td>
+<td align="left">2.3</td>
+<td align="left">0.84</td>
+<td align="left">19</td>
+<td align="left"></td>
+<td align="left">3.5</td>
+<td align="left">0.41</td>
+<td align="left">≤ 0.01</td>
+<td align="left">wilcox.test</td>
+</tr>
+<tr class="even">
+<td align="left">qsec</td>
+<td align="left">13</td>
+<td align="left"></td>
+<td align="left">17</td>
+<td align="left">2.1</td>
+<td align="left">19</td>
+<td align="left"></td>
+<td align="left">18</td>
+<td align="left">2</td>
+<td align="left">0.27</td>
+<td align="left">wilcox.test</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>vs</strong></td>
+<td align="left">13</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">19</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.56</td>
+<td align="left">chisq.test</td>
+</tr>
+<tr class="even">
+<td align="left">    V-shaped</td>
+<td align="left">6</td>
+<td align="left">46</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">12</td>
+<td align="left">63</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">41</td>
-<td align="left">98</td>
+</tr>
+<tr class="odd">
+<td align="left">    straight</td>
+<td align="left">7</td>
+<td align="left">54</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">7</td>
+<td align="left">37</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">gear</td>
+<td align="left">13</td>
 <td align="left"></td>
+<td align="left">4</td>
+<td align="left">1</td>
+<td align="left">19</td>
 <td align="left"></td>
+<td align="left">3</td>
+<td align="left">0</td>
+<td align="left">≤ 0.01</td>
+<td align="left">wilcox.test</td>
+</tr>
+<tr class="odd">
+<td align="left">carb</td>
+<td align="left">13</td>
+<td align="left"></td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">19</td>
+<td align="left"></td>
+<td align="left">3</td>
+<td align="left">2</td>
+<td align="left">0.74</td>
+<td align="left">wilcox.test</td>
 </tr>
 </tbody>
 </table>
