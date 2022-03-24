@@ -7,8 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Easily create descriptive and comparative tables.
     It makes use and integrates directly with the tidyverse family of packages, and pipes.
-    Tables are produced as data frames/lists of data frames for easy manipulation after creation,
-    and ready to be saved as csv, or piped to DT::datatable() or pander::pander() to integrate into reports.">
+    Tables are produced as (nested) dataframes for easy manipulation.">
 <title>Produce Descriptive and Comparative Tables Easily • desctable</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
@@ -17,8 +16,7 @@
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Produce Descriptive and Comparative Tables Easily">
 <meta property="og:description" content="Easily create descriptive and comparative tables.
     It makes use and integrates directly with the tidyverse family of packages, and pipes.
-    Tables are produced as data frames/lists of data frames for easy manipulation after creation,
-    and ready to be saved as csv, or piped to DT::datatable() or pander::pander() to integrate into reports.">
+    Tables are produced as (nested) dataframes for easy manipulation.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -64,7 +62,7 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/maximewack/desctable/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/desctable/desctable/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -161,7 +159,7 @@ your choice</p>
              <span class="va">IQR</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/desc_tests.html">desc_tests</a></span><span class="op">(</span>vs <span class="op">=</span> <span class="op">~</span><span class="va">chisq.test</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/desc_output.html">desc_output</a></span><span class="op">(</span><span class="st">"pander"</span><span class="op">)</span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
 <col width="9%">
 <col width="23%">
@@ -172,8 +170,8 @@ your choice</p>
 <col width="3%">
 <col width="5%">
 <col width="4%">
-<col width="5%">
-<col width="9%">
+<col width="6%">
+<col width="8%">
 </colgroup>
 <thead><tr class="header">
 <th align="left"> </th>
@@ -199,7 +197,7 @@ your choice</p>
 <td align="left"></td>
 <td align="left">17</td>
 <td align="left">4.2</td>
-<td align="left">≤ 0.01</td>
+<td align="left">&lt; 0.01</td>
 <td align="left">wilcox.test</td>
 </tr>
 <tr class="even">
@@ -212,7 +210,7 @@ your choice</p>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">≤ 0.01</td>
+<td align="left">&lt; 0.01</td>
 <td align="left">fisher.test</td>
 </tr>
 <tr class="odd">
@@ -264,7 +262,7 @@ your choice</p>
 <td align="left"></td>
 <td align="left">276</td>
 <td align="left">164</td>
-<td align="left">≤ 0.01</td>
+<td align="left">&lt; 0.01</td>
 <td align="left">wilcox.test</td>
 </tr>
 <tr class="odd">
@@ -290,7 +288,7 @@ your choice</p>
 <td align="left"></td>
 <td align="left">3.1</td>
 <td align="left">0.63</td>
-<td align="left">≤ 0.01</td>
+<td align="left">&lt; 0.01</td>
 <td align="left">wilcox.test</td>
 </tr>
 <tr class="odd">
@@ -303,7 +301,7 @@ your choice</p>
 <td align="left"></td>
 <td align="left">3.5</td>
 <td align="left">0.41</td>
-<td align="left">≤ 0.01</td>
+<td align="left">&lt; 0.01</td>
 <td align="left">wilcox.test</td>
 </tr>
 <tr class="even">
@@ -368,7 +366,7 @@ your choice</p>
 <td align="left"></td>
 <td align="left">3</td>
 <td align="left">0</td>
-<td align="left">≤ 0.01</td>
+<td align="left">&lt; 0.01</td>
 <td align="left">wilcox.test</td>
 </tr>
 <tr class="odd">
@@ -393,8 +391,8 @@ your choice</p>
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=desctable" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/maximewack/desctable/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/maximewack/desctable/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/desctable/desctable/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/desctable/desctable/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -428,6 +426,7 @@ your choice</p>
 <li><a href="https://travis-ci.org/desctable/desctable" class="external-link"><img src="https://travis-ci.org/desctable/desctable.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 <li><a href="https://cran.r-project.org/package=desctable" class="external-link"><img src="http://www.r-pkg.org/badges/version/desctable" alt="CRAN_Status_Badge"></a></li>
 <li><a href="https://www.r-pkg.org:443/pkg/desctable" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/desctable" alt="CRAN RStudio mirror downloads"></a></li>
+<li><a href="https://www.r-pkg.org:443/pkg/desctable" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/desctable" alt="CRAN RStudio mirror total downloads"></a></li>
 </ul>
 </div>
 
